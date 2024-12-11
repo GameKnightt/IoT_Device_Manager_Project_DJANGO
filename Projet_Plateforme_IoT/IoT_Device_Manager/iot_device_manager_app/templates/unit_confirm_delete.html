@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Unit</title>
+</head>
+<body>
+    <h1>Delete Unit</h1>
+    <p>Are you sure you want to delete "{{ unit.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+    </form>
+    <a href="{% url 'unit_detail' unit.pk %}">Cancel</a>
+</body>
+</html>

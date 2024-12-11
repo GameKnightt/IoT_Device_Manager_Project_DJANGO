@@ -1,0 +1,49 @@
+<!-- templates/sensor_visualization.html -->
+{% extends 'index.html' %}
+
+{% block title %}Sensor Visualization{% endblock %}
+
+{% block content %}
+<h1>Sensor Visualization</h1>
+
+<!-- Map container -->
+<div id="map"></div>
+
+<!-- Chart container -->
+<div class="chart-container">
+    <canvas id="sensorChart"></canvas>
+</div>
+
+<script>
+    // Initialize Leaflet map
+    var map = L.map('map').setView([0, 0], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Add markers for each sensor
+    {% for sensor in sensors %}
+    L.marker([{{ sensor.lati }}, {{ sensor.longi }}]).addTo(map)
+        .bindPopup('{{ sensor.name }}');
+    {% endfor %}
+
+    // Initialize Chart.js
+    var ctx = document.getElementById('sensorChart').getContext('2d');
+    var sensorChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ timestamps| safe }},
+    datasets: [{
+        label: 'Sensor Data',
+        data: {{ values| safe }},
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 1
+                }]
+            },
+    options: {
+        responsive: true,
+            maintainAspectRatio: false
+    }
+        });
+</script>
+{% endblock %}

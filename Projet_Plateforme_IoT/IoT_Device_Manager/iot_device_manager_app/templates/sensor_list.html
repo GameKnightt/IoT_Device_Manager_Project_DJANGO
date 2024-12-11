@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sensor List</title>
+</head>
+
+<body>
+    <h1>Sensor List</h1>
+    <a href="{% url 'sensor_create' %}">Add Sensor</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th>Period</th>
+            <th>Actions</th>
+        </tr>
+        {% for sensor in sensors %}
+        <tr>
+            <td>{{ sensor.id }}</td>
+            <td>{{ sensor.name }}</td>
+            <td>{{ sensor.longi }}</td>
+            <td>{{ sensor.lati }}</td>
+            <td>{{ sensor.period }}</td>
+            <td>
+                <a href="{% url 'sensor_detail' sensor.pk %}">View</a>
+                <a href="{% url 'sensor_update' sensor.pk %}">Edit</a>
+                <a href="{% url 'sensor_delete' sensor.pk %}">Delete</a>
+                <a href="{% url 'sensor_visualization_detail' sensor.pk %}">Visualize</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

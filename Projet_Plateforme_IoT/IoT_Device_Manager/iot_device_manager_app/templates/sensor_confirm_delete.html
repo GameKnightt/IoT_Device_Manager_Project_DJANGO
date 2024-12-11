@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Sensor</title>
+</head>
+<body>
+    <h1>Delete Sensor</h1>
+    <p>Are you sure you want to delete "{{ sensor.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+    </form>
+    <a href="{% url 'sensor_detail' sensor.pk %}">Cancel</a>
+</body>
+</html>
