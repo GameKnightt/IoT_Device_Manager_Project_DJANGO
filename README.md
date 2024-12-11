@@ -1,0 +1,2 @@
+# IoT_Device_Manager_Project_DJANGO
+IoT_Device_Manager_Project_DJANGO
